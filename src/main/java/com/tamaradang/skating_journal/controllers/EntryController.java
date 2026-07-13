@@ -1,14 +1,13 @@
 package com.tamaradang.skating_journal.controllers;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.tamaradang.skating_journal.beans.Entry;
-import com.tamaradang.skating_journal.repositories.EntryRepository;
+import com.tamaradang.skating_journal.services.EntryService;
 
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -17,47 +16,38 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 @RequestMapping("/api/entries")
 public class EntryController {
-    
-    private final EntryRepository entryRepository;
 
-    @GetMapping
+    private final EntryService entryService;
+
+    @GetMapping(value = {"/",""})
     public List<Entry> getAllEntries() {
-        return entryRepository.findAll();
+        return entryService.getAllEntries();
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Entry> getEntryById(@PathVariable String id) {
-        return entryRepository.findById(id)
+        return entryService.getEntryById(id)
                 .map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @PostMapping
+    @PostMapping(value = {"/",""}, headers = "Content-Type=application/json")
     public ResponseEntity<Entry> createEntry(@Valid @RequestBody Entry entry) {
-        Entry saved = entryRepository.save(entry);
+        Entry saved = entryService.createEntry(entry);
         return ResponseEntity.status(HttpStatus.CREATED).body(saved);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping(value = "/{id}", headers = "Content-Type=application/json")
     public ResponseEntity<Entry> updateEntry(@PathVariable String id, @Valid @RequestBody Entry entryDetails) {
-        Optional<Entry> existingEntry = entryRepository.findById(id);
-        if (existingEntry.isEmpty()) {
-            return ResponseEntity.notFound().build();
-        }
-
-        Entry entry = existingEntry.get();
-        entry.setTitle(entryDetails.getTitle());
-        entry.setContent(entryDetails.getContent());
-        return ResponseEntity.ok(entryRepository.save(entry));
+        return entryService.updateEntry(id, entryDetails)
+                .map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteEntry(@PathVariable String id) {
-        if (!entryRepository.existsById(id)) {
-            return ResponseEntity.notFound().build();
-        }
-
-        entryRepository.deleteById(id);
-        return ResponseEntity.noContent().build();
+        return entryService.deleteEntry(id)
+                ? ResponseEntity.noContent().build()
+                : ResponseEntity.notFound().build();
     }
 }
