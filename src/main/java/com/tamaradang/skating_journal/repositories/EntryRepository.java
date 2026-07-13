@@ -1,4 +1,4 @@
-package com.tamaradang.skating_journal.repository;
+package com.tamaradang.skating_journal.repositories;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 import com.tamaradang.skating_journal.beans.Entry;

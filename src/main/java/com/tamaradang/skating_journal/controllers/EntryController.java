@@ -1,4 +1,4 @@
-package com.tamaradang.skating_journal.controller;
+package com.tamaradang.skating_journal.controllers;
 
 import java.util.List;
 import java.util.Optional;
@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.tamaradang.skating_journal.beans.Entry;
-import com.tamaradang.skating_journal.repository.EntryRepository;
+import com.tamaradang.skating_journal.repositories.EntryRepository;
 
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
