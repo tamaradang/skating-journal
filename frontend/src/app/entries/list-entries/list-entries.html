@@ -1,0 +1,8 @@
+<p>list-entries works!</p>
+<ul>
+    @for (entry of entries; track entry.id) {
+        <li>
+            {{ entry.title }} - {{ entry.content }}
+        </li>
+    }
+</ul>
