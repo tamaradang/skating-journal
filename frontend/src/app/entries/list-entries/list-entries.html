@@ -1,8 +1,8 @@
-<p>list-entries works!</p>
+<p>Practice Entries</p>
 <ul>
     @for (entry of entries; track entry.id) {
         <li>
-            {{ entry.title }} - {{ entry.content }}
+            {{ entry.practiceDate | date:'E, d MMM yyyy @ HH:mm' }} - {{ entry.title }} - {{ entry.content }}
         </li>
     }
 </ul>

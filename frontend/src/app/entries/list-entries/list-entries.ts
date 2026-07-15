@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { Entry } from '../../core/models/entry.model';
 import { EntryService } from '../../core/services/entry.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-list-entries',
-  imports: [],
+  imports: [DatePipe],
   templateUrl: './list-entries.html',
   styleUrl: './list-entries.css',
 })

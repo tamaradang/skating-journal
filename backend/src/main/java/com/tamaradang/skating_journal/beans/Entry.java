@@ -1,7 +1,10 @@
 package com.tamaradang.skating_journal.beans;
 
+import java.time.LocalDateTime;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import com.mongodb.lang.NonNull;
 
@@ -19,6 +22,12 @@ public class Entry {
     
     @Id
     private String id;
+
+    @NonNull
+    @Getter
+    @Setter
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    private LocalDateTime practiceDate;
 
     @NonNull
     @Getter

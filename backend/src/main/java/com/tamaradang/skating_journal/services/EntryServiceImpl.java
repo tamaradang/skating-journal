@@ -34,6 +34,7 @@ public class EntryServiceImpl implements EntryService {
     @Override
     public Optional<Entry> updateEntry(String id, Entry entryDetails) {
         return entryRepository.findById(id).map(existingEntry -> {
+            existingEntry.setPracticeDate(entryDetails.getPracticeDate());
             existingEntry.setTitle(entryDetails.getTitle());
             existingEntry.setContent(entryDetails.getContent());
             return entryRepository.save(existingEntry);
