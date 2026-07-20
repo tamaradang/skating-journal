@@ -1,16 +1,20 @@
-import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
-import { Entry } from "../models/entry.model";
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { Entry } from '../models/entry.model';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EntryService {
-    private apiUrl = '/api/entries';
+  constructor(private http: HttpClient) {}
 
-    constructor(private http:HttpClient){}
-
-    getEntries(){
-        return this.http.get<Entry[]>(this.apiUrl);
+  getEntries(): Observable<Entry[]> {
+    if (environment.useMock) {
+      return this.http.get<Entry[]>(`${environment.apiUrl}/entries.json`);
     }
+
+    return this.http.get<Entry[]>(`${environment.apiUrl}/entries`);
+  }
 }
