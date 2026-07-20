@@ -1,3 +1,58 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import 'tailwindcss';
+@plugin "daisyui";
+
+html,
+body {
+  min-height: 100vh;
+  margin: 0;
+}
+
+body {
+  background: #9cc3f0;
+  background: linear-gradient(142deg, rgba(156, 195, 240, 1) 0%, rgba(218, 247, 246, 1) 100%);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+
+/* Navbar Styles */
+
+.navbar {
+  @layer daisyui.l1.l2.l3 {
+    @apply flex w-full items-center;
+    padding: 0.5rem;
+    min-height: 4rem;
+  }
+}
+
+:where(.navbar) {
+  @layer daisyui.l1.l2 {
+    @apply relative;
+  }
+}
+
+.navbar-start {
+  @layer daisyui.l1.l2.l3 {
+    @apply inline-flex items-center;
+    width: 50%;
+    justify-content: flex-start;
+  }
+}
+
+.navbar-center {
+  @layer daisyui.l1.l2.l3 {
+    @apply inline-flex items-center;
+    @apply shrink-0;
+  }
+}
+
+.navbar-end {
+  @layer daisyui.l1.l2.l3 {
+    @apply inline-flex items-center;
+    width: 50%;
+    justify-content: flex-end;
+  }
+}
