@@ -36,7 +36,7 @@ public class EntryServiceImpl implements EntryService {
         return entryRepository.findById(id).map(existingEntry -> {
             existingEntry.setPracticeDate(entryDetails.getPracticeDate());
             existingEntry.setTitle(entryDetails.getTitle());
-            existingEntry.setContent(entryDetails.getContent());
+            existingEntry.setNotes(entryDetails.getNotes());
             return entryRepository.save(existingEntry);
         });
     }

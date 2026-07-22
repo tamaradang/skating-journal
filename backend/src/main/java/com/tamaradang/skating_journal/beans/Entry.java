@@ -37,5 +37,5 @@ public class Entry {
     @NonNull
     @Getter
     @Setter
-    private String content;
+    private String notes;
 }
