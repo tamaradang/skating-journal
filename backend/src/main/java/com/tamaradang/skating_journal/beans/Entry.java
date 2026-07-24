@@ -1,11 +1,11 @@
 package com.tamaradang.skating_journal.beans;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.mongodb.lang.NonNull;
 
 import lombok.AllArgsConstructor;
@@ -26,8 +26,8 @@ public class Entry {
     @NonNull
     @Getter
     @Setter
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-    private LocalDateTime practiceDate;
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private LocalDate practiceDate;
 
     @NonNull
     @Getter
