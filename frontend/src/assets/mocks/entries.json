@@ -1,19 +1,19 @@
 [
   {
     "id": "123",
-    "practiceDate": "2026-07-06T22:30:00.000Z",
+    "practiceDate": "2026-07-06",
     "title": "Morning practice",
     "notes": "Worked on backward crossovers and spins today."
   },
   {
     "id": "456",
-    "practiceDate": "2026-07-08T18:00:00.000Z",
+    "practiceDate": "2026-07-08",
     "title": "Midday Edge Work",
     "notes": "Focused heavily on inside edges, three-turns, and maintaining speed into jumps."
   },
   {
     "id": "789",
-    "practiceDate": "2026-07-12T00:15:00.000Z",
+    "practiceDate": "2026-07-12",
     "title": "Program Runthrough",
     "notes": "Ran through the entire choreography with music."
   }
