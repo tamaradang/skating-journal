@@ -1,0 +1,62 @@
+/* Override default styles of angular-calendar */
+
+.cal-month-view .cal-day-badge {
+  display: none;
+}
+
+.cal-month-view .cal-event {
+  display: none;
+}
+
+.cal-month-view .cal-open-day-events {
+  display: none;
+}
+
+.cal-month-view {
+  font-size: 12px;
+}
+
+.cal-month-view .cal-cell-row {
+  height: 55px;
+}
+
+.cal-month-view .cal-day-cell {
+  min-height: 55px;
+}
+
+.cal-month-view .cal-cell-top {
+  min-height: 45px;
+}
+
+.cal-month-view .cal-header {
+  height: 30px;
+}
+
+.cal-month-view .cal-day-number {
+  font-size: 11px;
+}
+
+.cal-month-view .cal-day-cell.cal-today {
+  background-color: #e8fde7;
+  border-bottom: 1px solid #e1e1e1;
+}
+
+.cal-month-view .cal-day-cell.cal-today .cal-day-number {
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.cal-month-view .cal-day-cell.practice-day {
+  background-color: #d9ecff;
+  border-bottom: 1px solid #e1e1e1;
+}
+
+.cal-month-view .cal-day-cell.practice-day:hover {
+  background-color: #c5e2ff;
+  border-bottom: 1px solid #e1e1e1;
+}
+
+.cal-month-view .cal-day-cell.cal-today.practice-day {
+  background-color: #b8dbff;
+  border-bottom: 1px solid #e1e1e1;
+}
