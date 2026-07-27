@@ -6,11 +6,17 @@
 :root {
   --color-primary: #2D5385;
   --color-secondary: #41679C;
+  --color-accent: #9cc3f0;
 
   --color-background: #9cc3f0;
   --color-surface: #f8fafc;
   --color-text: #1e293b;
   --color-muted: #64748b;
+
+  --color-practice: #2D5385;
+  --color-off-ice: #3CB371;
+  --color-assessment: #F59E0B;
+  --color-competition: #A855F7;
 }
 
 html,
@@ -39,9 +45,21 @@ body {
   }
 }
 
+/* Colours */
+.clr-primary {
+  color: var(--color-primary);
+}
+
+.clr-secondary {
+  color: var(--color-secondary);
+}
+
+.clr-background {
+  color: var(--color-background);
+}
+
 
 /* Navbar Styles */
-
 .navbar {
   @layer daisyui.l1.l2.l3 {
     @apply flex w-full items-center;

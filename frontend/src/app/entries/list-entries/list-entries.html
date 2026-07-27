@@ -1,8 +1,25 @@
-<p>Practice Entries</p>
-<ul>
-    @for (entry of entries; track entry.id) {
-        <li>
-            {{ entry.practiceDate | date:'E, d MMM yyyy @ HH:mm' }} - {{ entry.title }} - {{ entry.content }}
-        </li>
+<h1 class="page-title">Practice Entries</h1>
+
+<div class="bg-base-100 rounded-box shadow-md p-4">
+  <ul class="list">
+    @for (entry of entries(); track $index) {
+      <li routerLink="/entry/{{ entry.id }}" class="list-row">
+        <div class="flex-1">
+          <div class="text-xs uppercase font-semibold opacity-60">
+            {{ entry.practiceDate | date: 'E, d MMM yyyy' }}
+          </div>
+          <div>{{ entry.title }}</div>
+        </div>
+        <div class="ml-auto flex-none">
+          <button
+            class="btn btn-square btn-ghost"
+            [routerLink]="['/entry', entry.id, 'edit']"
+            (click)="$event.stopPropagation()"
+          >
+            <span class="icon-[heroicons--pencil]"></span>
+          </button>
+        </div>
+      </li>
     }
-</ul>
+  </ul>
+</div>
