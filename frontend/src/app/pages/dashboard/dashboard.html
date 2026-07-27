@@ -1,0 +1,12 @@
+<div class="dashboard grid grid-cols-1 md:grid-cols-3 min-h-screen gap-6 p-6">
+  <main class="md:col-span-2">
+    <router-outlet></router-outlet>
+  </main>
+
+  <aside class="h-fit">
+    <app-practice-calendar></app-practice-calendar>
+    <div>
+      <a routerLink="/add-entry" class="btn btn-primary w-full mt-4">Add Entry</a>
+    </div>
+  </aside>
+</div>
