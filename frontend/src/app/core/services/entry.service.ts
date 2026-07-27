@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { map, Observable, of, tap } from 'rxjs';
 import { Entry } from '../models/entry.model';
 import { environment } from '../../../environments/environment';
 
@@ -8,13 +8,36 @@ import { environment } from '../../../environments/environment';
   providedIn: 'root'
 })
 export class EntryService {
-  constructor(private http: HttpClient) {}
+  private readonly http = inject(HttpClient);
+  private readonly _entries = signal<Entry[]>([]);
+  readonly entries = this._entries.asReadonly();
 
-  getEntries(): Observable<Entry[]> {
+  loadEntries(): Observable<void> {
+    const url = environment.useMock
+      ? `${environment.apiUrl}/entries.json`
+      : `${environment.apiUrl}/entries`;
+
+    return this.http.get<Entry[]>(url).pipe(
+      tap(entries => this._entries.set(entries)),
+      map(() => void 0)
+    );
+  }
+
+  addEntry(entry: Entry): Observable<Entry> {
     if (environment.useMock) {
-      return this.http.get<Entry[]>(`${environment.apiUrl}/entries.json`);
+      const newEntry: Entry = {...entry, id: Date.now().toString()};
+
+      this._entries.update(entries => [...entries, newEntry]);
+
+      return of(newEntry);
     }
 
-    return this.http.get<Entry[]>(`${environment.apiUrl}/entries`);
+    return this.http
+      .post<Entry>(`${environment.apiUrl}/entries`, entry)
+      .pipe(
+        tap(newEntry => {
+          this._entries.update(entries => [...entries, newEntry]);
+        })
+      );
   }
 }
