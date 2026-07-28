@@ -1,1 +1,18 @@
-<p>view-entry works!</p>
+@if (entry(); as entry) {
+  <div class="card bg-base-100 card-md shadow-sm">
+    <div class="card-body">
+      <h2 class="card-title">{{ entry.title }}</h2>
+      <p><strong>Practice Date:</strong> {{ entry.practiceDate | date }}</p>
+      <p><strong>Notes:</strong> {{ entry.notes }}</p>
+
+      <div class="card-actions justify-between mt-4">
+        <a class="btn btn-outline" [routerLink]="['/list-entries']">Back to List</a>
+        <div>
+            <a class="btn btn-primary" [routerLink]="['/entry', entry.id, 'edit']"> Edit </a>
+        </div>
+      </div>
+    </div>
+  </div>
+} @else {
+  <span class="loading loading-spinner loading-lg"></span>
+}
