@@ -1,0 +1,68 @@
+<div class="card bg-base-100 card-md shadow-sm">
+  <div class="card-body">
+    <form [formGroup]="entryForm" (ngSubmit)="onSubmit()" class="space-y-6">
+      <!-- Title -->
+      <div>
+        <label for="title" class="text-gray-700 font-medium mb-1 block"> Title * </label>
+        <input
+          id="title"
+          formControlName="title"
+          [class.border-red-500]="isInvalid('title')"
+          class="w-full rounded-lg border border-gray-300 py-2 px-4 focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent"
+          placeholder="Add title"
+        />
+        @if (isInvalid('title')) {
+          <p class="mt-1 text-sm text-red-600">
+              Title is required
+          </p>
+        }
+      </div>
+
+      <!-- Date -->
+      <div>
+        <label for="practiceDate" class="text-gray-700 font-medium mb-1 block"> Date * </label>
+        <input
+          id="practiceDate"
+          type="date"
+          formControlName="practiceDate"
+          [class.border-red-500]="isInvalid('practiceDate')"
+          class="w-full rounded-lg border border-gray-300 py-2 px-4 focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent"
+        />
+        @if (isInvalid('practiceDate')) {
+          <p class="mt-1 text-sm text-red-600">
+              Date is required
+          </p>
+        }
+      </div>
+
+      <!-- Notes -->
+      <div>
+        <label for="notes" class="text-gray-700 font-medium mb-1 block"> Notes </label>
+        <textarea
+          id="notes"
+          rows="5"
+          formControlName="notes"
+          class="w-full rounded-lg border border-gray-300 py-2 px-4 focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent"
+          placeholder="Add notes (optional)"
+        >
+        </textarea>
+      </div>
+
+      <!-- CTA -->
+      <div class="flex items-center justify-between pt-6">
+        <div class="space-x-3">
+          <button type="submit" class="px-6 py-2 text-sm font-medium text-white btn btn-primary">
+            Save
+          </button>
+          <button
+            type="button"
+            (click)="reset()"
+            class="px-4 py-2 text-sm font-medium text-gray-700"
+          >
+            Clear
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

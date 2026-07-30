@@ -57,4 +57,19 @@ export class EntryService {
       }),
     );
   }
+
+  updateEntry(entry: Entry): Observable<Entry> {
+    if (environment.useMock) {
+      this._entries.update((entries) => entries.map((e) => (e.id === entry.id ? entry : e)));
+      return of(entry);
+    }
+
+    return this.http.put<Entry>(`${environment.apiUrl}/entries/${entry.id}`, entry).pipe(
+      tap((updatedEntry) => {
+        this._entries.update((entries) =>
+          entries.map((e) => (e.id === updatedEntry.id ? updatedEntry : e)),
+        );
+      }),
+    );
+  }
 }

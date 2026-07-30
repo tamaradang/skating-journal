@@ -1,1 +1,5 @@
-<p>edit-entry works!</p>
+<h1 class="page-title">Edit Entry</h1>
+
+@if (entry(); as entry) {
+  <app-entry-form [entry]="entry" (save)="save($event)" />
+}
