@@ -61,10 +61,12 @@ export class EntryForm {
 
     const entry = this.entry();
     const formValue = this.entryForm.getRawValue();
+    const entryPayload: Entry = { ...formValue };
 
-    this.save.emit({
-      id: entry?.id ?? '',
-      ...formValue,
-    });
+    if (entry?.id) {
+      entryPayload.id = entry.id;
+    }
+
+    this.save.emit(entryPayload);
   }
 }
